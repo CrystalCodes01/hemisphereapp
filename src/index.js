@@ -1,14 +1,22 @@
-import React from "react";
+import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import SeasonDisplay from "./SeasonDisplay";
 
-const App = () => {
-  window.navigator.geolocation.getCurrentPosition(
-    position => console.log(position),
-    err => console.log(err)
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
 
-  return <div className="ui container comments">Latitude: </div>;
-};
+    this.state = { lat: null };
+  }
+
+  render() {
+    window.navigator.geolocation.getCurrentPosition(
+      position => console.log(position),
+      err => console.log(err)
+    );
+
+    return <div className="ui container comments">Latitude: </div>;
+  }
+}
 
 ReactDOM.render(<App />, document.querySelector("#root"));
